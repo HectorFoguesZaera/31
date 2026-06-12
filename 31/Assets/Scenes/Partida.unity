@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 153052395}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: -3, z: 0}
+  m_LocalPosition: {x: -5, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 322980281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -3, z: 0}
+  m_LocalPosition: {x: 5, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,6 +256,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   discard: {fileID: 1681853612}
+  drawDiscard: {fileID: 1524321366}
+  pointsHand: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +444,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   discard: {fileID: 153052397}
+  drawDiscard: {fileID: 1681853612}
+  pointsHand: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +579,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   discard: {fileID: 1524321366}
+  drawDiscard: {fileID: 322980283}
+  pointsHand: 0
 --- !u!1 &1093737594
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +642,7 @@ Transform:
   m_GameObject: {fileID: 1524321364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 3, z: 0}
+  m_LocalPosition: {x: 5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -765,7 +771,7 @@ Transform:
   m_GameObject: {fileID: 1681853610}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 3, z: 0}
+  m_LocalPosition: {x: -5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -832,6 +838,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   discard: {fileID: 322980283}
+  drawDiscard: {fileID: 153052397}
+  pointsHand: 0
 --- !u!1 &2147420177
 GameObject:
   m_ObjectHideFlags: 0
