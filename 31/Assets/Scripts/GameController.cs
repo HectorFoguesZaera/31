@@ -12,9 +12,10 @@ public class GameController : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                player.hand[i] = deck.cards[0];
+                player.handCards[i] = deck.cards[0];
                 deck.cards.RemoveAt(0);
             }
+            player.InstantiateCards();
         }
 
         GetPoints();
@@ -33,9 +34,9 @@ public class GameController : MonoBehaviour
             //Aqui se tiene que comprobar el palo, si coincide se suma
             Dictionary<Cards.CardType, int> pointsByType = new();
 
-            for (int i = 0; i < player.hand.Length; i++)
+            for (int i = 0; i < player.handCards.Length; i++)
             {
-                Cards card = player.hand[i];
+                Cards card = player.handCards[i];
 
                 if (!pointsByType.ContainsKey(card.cardType))
                 {

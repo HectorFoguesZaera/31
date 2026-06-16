@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f6a015e8dec3f48b65a712f21a2330, type: 3}
   m_Name: ReyOros
   m_EditorClassIdentifier: Assembly-CSharp::Cards
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: cb6fb7f70d902964ba98260e3745ce94, type: 3}
+  reverseImage: {fileID: 21300000, guid: cb6fb7f70d902964ba98260e3745ce94, type: 3}
   num: 12
   points: 10
   cardType: 1
