@@ -523,11 +523,12 @@ MonoBehaviour:
   - {fileID: 1863055965}
   - {fileID: 304915776}
   - {fileID: 1714853294}
-  discard: {fileID: 1681853612}
-  drawDiscard: {fileID: 1524321366}
+  discard: {fileID: 0}
+  drawDiscard: {fileID: 0}
   pointsHand: 0
   firstPlayer: 0
   cardPrefab: {fileID: 2782492997992083491, guid: 5c3eb224c38e064429df992753a38981, type: 3}
+  isTurn: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,11 +860,12 @@ MonoBehaviour:
   - {fileID: 1520758735}
   - {fileID: 1022952186}
   - {fileID: 283451323}
-  discard: {fileID: 153052397}
-  drawDiscard: {fileID: 1681853612}
+  discard: {fileID: 0}
+  drawDiscard: {fileID: 0}
   pointsHand: 0
   firstPlayer: 0
   cardPrefab: {fileID: 2782492997992083491, guid: 5c3eb224c38e064429df992753a38981, type: 3}
+  isTurn: 0
 --- !u!1 &587919367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,11 +1144,12 @@ MonoBehaviour:
   - {fileID: 380121101}
   - {fileID: 641855370}
   - {fileID: 1370506841}
-  discard: {fileID: 1524321366}
-  drawDiscard: {fileID: 322980283}
+  discard: {fileID: 0}
+  drawDiscard: {fileID: 0}
   pointsHand: 0
   firstPlayer: 0
   cardPrefab: {fileID: 2782492997992083491, guid: 5c3eb224c38e064429df992753a38981, type: 3}
+  isTurn: 0
 --- !u!1 &641855370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,6 +1243,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 577406844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1027909844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1027909845}
+  - component: {fileID: 1027909846}
+  m_Layer: 0
+  m_Name: FirstDiscard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1027909845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027909844}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1093737595}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1027909846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027909844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0d103dd9eb8324083127a6bf006f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Discards
 --- !u!1 &1093737594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1316,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1027909845}
   - {fileID: 322980282}
   - {fileID: 1524321365}
   - {fileID: 1681853611}
@@ -1784,6 +1832,8 @@ MonoBehaviour:
   - {fileID: 457228324}
   - {fileID: 577406845}
   deck: {fileID: 2147420179}
+  firstDiscards: {fileID: 1027909846}
+  cardPrefab: {fileID: 2782492997992083491, guid: 5c3eb224c38e064429df992753a38981, type: 3}
 --- !u!4 &1549574105
 Transform:
   m_ObjectHideFlags: 0
@@ -2090,11 +2140,12 @@ MonoBehaviour:
   - {fileID: 1902258427}
   - {fileID: 647842941}
   - {fileID: 252301225}
-  discard: {fileID: 322980283}
-  drawDiscard: {fileID: 153052397}
+  discard: {fileID: 0}
+  drawDiscard: {fileID: 0}
   pointsHand: 0
-  firstPlayer: 0
+  firstPlayer: 1
   cardPrefab: {fileID: 2782492997992083491, guid: 5c3eb224c38e064429df992753a38981, type: 3}
+  isTurn: 1
 --- !u!1 &2060655469
 GameObject:
   m_ObjectHideFlags: 0

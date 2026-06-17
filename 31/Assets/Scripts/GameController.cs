@@ -5,8 +5,44 @@ public class GameController : MonoBehaviour
 {
     public List<Hands> players;
     public Deck deck;
+    
+    public Discards firstDiscards;
+    public CardView cardPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+       StartRound();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //Quiero que vaya el siguiente, si player1 true, player 1 false y player 2 true, el resto nada
+            bool notFoundPlayer = false;
+            bool foundCurrentPlayer = false;
+            foreach (Hands player in players)
+            {
+                if (player.isTurn)
+                {
+                    foundCurrentPlayer = true;
+                    player.isTurn = false;
+                }else if (foundCurrentPlayer)
+                {
+                    player.isTurn = true;
+                    foundCurrentPlayer = false;
+                    notFoundPlayer = true;
+                }
+            }
+            if (!notFoundPlayer)
+            {
+                players[0].isTurn = true;
+            }
+        }
+    }
+
+    public void StartRound()
     {
         foreach (Hands player in players)
         {
@@ -17,14 +53,13 @@ public class GameController : MonoBehaviour
             }
             player.InstantiateCards();
         }
+        firstDiscards.discardCards.Push(deck.cards[0]);
+        deck.cards.RemoveAt(0);
+        CardView card = Instantiate(cardPrefab, firstDiscards.transform.position, Quaternion.identity, firstDiscards.transform);
+        card.transform.localScale = new Vector3(1, 1, 1);        
+        card.SetCardData(firstDiscards.discardCards.Peek());
 
         GetPoints();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void GetPoints()
@@ -58,4 +93,6 @@ public class GameController : MonoBehaviour
             player.pointsHand = totalPoints;
         } 
     }
+
+  
 }

@@ -4,6 +4,11 @@ using System.Collections.Generic;
 public class Discards : MonoBehaviour
 {
     public Stack<Cards> discardCards;
+
+    void Awake()
+    {
+        discardCards = new Stack<Cards>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
