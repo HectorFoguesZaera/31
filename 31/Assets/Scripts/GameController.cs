@@ -19,26 +19,30 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //Quiero que vaya el siguiente, si player1 true, player 1 false y player 2 true, el resto nada
-            bool notFoundPlayer = false;
-            bool foundCurrentPlayer = false;
-            foreach (Hands player in players)
+            NextPlayerTurn();
+        }
+    }
+
+    public void NextPlayerTurn()
+    {
+        bool notFoundPlayer = false;
+        bool foundCurrentPlayer = false;
+        foreach (Hands player in players)
+        {
+            if (player.isTurn)
             {
-                if (player.isTurn)
-                {
-                    foundCurrentPlayer = true;
-                    player.isTurn = false;
-                }else if (foundCurrentPlayer)
-                {
-                    player.isTurn = true;
-                    foundCurrentPlayer = false;
-                    notFoundPlayer = true;
-                }
-            }
-            if (!notFoundPlayer)
+                foundCurrentPlayer = true;
+                player.isTurn = false;
+            }else if (foundCurrentPlayer)
             {
-                players[0].isTurn = true;
+                player.isTurn = true;
+                foundCurrentPlayer = false;
+                notFoundPlayer = true;
             }
+        }
+        if (!notFoundPlayer)
+        {
+            players[0].isTurn = true;
         }
     }
 
@@ -46,19 +50,26 @@ public class GameController : MonoBehaviour
     {
         foreach (Hands player in players)
         {
+            player.handCards.Clear();
             for (int i = 0; i < 3; i++)
             {
-                player.handCards[i] = deck.cards[0];
-                deck.cards.RemoveAt(0);
+                player.handCards.Add(deck.DrawCard());
             }
             player.InstantiateCards();
         }
+        Cards startCard = deck.DrawCard();
+        firstDiscards.discardCards.Push(startCard);
+        CardView card = Instantiate(cardPrefab, firstDiscards.transform.position, Quaternion.identity, firstDiscards.transform);
+        card.transform.localScale = new Vector3(1, 1, 1);
+        card.SetCardData(startCard);
+
+        /*
         firstDiscards.discardCards.Push(deck.cards[0]);
         deck.cards.RemoveAt(0);
         CardView card = Instantiate(cardPrefab, firstDiscards.transform.position, Quaternion.identity, firstDiscards.transform);
         card.transform.localScale = new Vector3(1, 1, 1);        
         card.SetCardData(firstDiscards.discardCards.Peek());
-
+*/
         GetPoints();
     }
 
@@ -69,10 +80,8 @@ public class GameController : MonoBehaviour
             //Aqui se tiene que comprobar el palo, si coincide se suma
             Dictionary<Cards.CardType, int> pointsByType = new();
 
-            for (int i = 0; i < player.handCards.Length; i++)
+            foreach (Cards card in player.handCards)
             {
-                Cards card = player.handCards[i];
-
                 if (!pointsByType.ContainsKey(card.cardType))
                 {
                     pointsByType[card.cardType] = 0;

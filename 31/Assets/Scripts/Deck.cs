@@ -3,10 +3,19 @@ using System.Collections.Generic;
 
 public class Deck : MonoBehaviour
 {
-    public List<Cards> cards;
+    public List<Cards> cardsList;
+
+    private Stack<Cards> cards;
     void Awake()
     {
        ShuffleDeck(); 
+
+       cards = new Stack<Cards>();
+
+       foreach (Cards card in cardsList)
+        {
+            cards.Push(card);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,14 +30,23 @@ public class Deck : MonoBehaviour
         
     }
 
+    public Cards DrawCard()
+    {
+        if (cards.Count == 0)
+        {
+            return null;
+        }
+        return cards.Pop();
+    }
+
     public void ShuffleDeck()
     {
-        for (int i = 0; i < cards.Count; i++)
+        for (int i = 0; i < cardsList.Count; i++)
         {
-            int randomIndex = Random.Range(0, cards.Count);
-            Cards temp = cards[i];
-            cards[i] = cards[randomIndex];
-            cards[randomIndex] = temp;
+            int randomIndex = Random.Range(i, cardsList.Count);
+            Cards temp = cardsList[i];
+            cardsList[i] = cardsList[randomIndex];
+            cardsList[randomIndex] = temp;
         }
     }
     
