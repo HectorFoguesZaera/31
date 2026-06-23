@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameController : MonoBehaviour
     
     public Discards firstDiscards;
     public CardView cardPrefab;
+    public TextMeshProUGUI[] pointsText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -100,6 +102,7 @@ public class GameController : MonoBehaviour
             }
 
             player.pointsHand = totalPoints;
+            pointsText[players.IndexOf(player)].text = totalPoints.ToString();
         } 
     }
 

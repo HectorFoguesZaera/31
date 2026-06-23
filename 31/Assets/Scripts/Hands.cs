@@ -13,6 +13,7 @@ public class Hands : MonoBehaviour
     public bool firstPlayer;
     public CardView cardPrefab;
     public bool isTurn;
+    public bool hasDrawnCard = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +28,10 @@ public class Hands : MonoBehaviour
             {
                 DrawDiscard();
             }
+        }
+        else
+        {
+            hasDrawnCard = false;
         }
     }
 
@@ -45,31 +50,64 @@ public class Hands : MonoBehaviour
 
     public void DrawCard()
     {
-        
+        if (isTurn)
+        {
+             //QUiero que robe y cuando tenga 4 que no pueda hacer otra cosa que descartar(apagar botones de robar y encender boton de descartar)
+            //Ver como hacer que haga pop de verdad del mazo
+            if (!hasDrawnCard)
+            {
+                firstPlayer = false;
+                GameObject deckScript = GameObject.Find("Deck");
+                Cards drawnCard = deckScript.GetComponent<Deck>().DrawCard();
+                handCards.Add(drawnCard);
+                CardView card = Instantiate(cardPrefab, hands[3].transform.position, Quaternion.identity, hands[3].transform);
+                card.transform.localScale = new Vector3(2, 2, 2);
+                card.SetCardData(drawnCard); 
+                hasDrawnCard = true;
+            }
+        }
     }
 
     public void DrawDiscard()
     {
-        if (firstPlayer)
-        {
-            GameObject discardScript = GameObject.Find("FirstDiscard");
-            Cards drawnCard = discardScript.GetComponent<Discards>().discardCards.Pop();
-            handCards.Add(drawnCard);
-            CardView card = Instantiate(cardPrefab, hands[4].transform.position, Quaternion.identity, hands[4].transform);
-            card.transform.localScale = new Vector3(2, 2, 2);        
-            //card.SetCardData(handCards[4]);
-            card.SetCardData(drawnCard);
-            firstPlayer = false;
-        }
-        else
-        {
-            Cards drawnCard = drawDiscard.discardCards.Pop();
-            handCards.Add(drawnCard);
+        if(isTurn){
+            if (firstPlayer)
+            {
+                if (!hasDrawnCard)
+                {
+                    GameObject discardScript = GameObject.Find("FirstDiscard");
+                    Cards drawnCard = discardScript.GetComponent<Discards>().discardCards.Pop();
+                    handCards.Add(drawnCard);
+                    Debug.Log("Esto funciona #");
+                    CardView card = Instantiate(cardPrefab, hands[3].transform.position, Quaternion.identity, hands[3].transform);
+                    Debug.Log("Esto funciona ####");
+                    card.transform.localScale = new Vector3(2, 2, 2);        
+                    //card.SetCardData(handCards[4]);
+                    card.SetCardData(drawnCard);
+                    firstPlayer = false;
+                    //Destruir el objeto hijo 
+                    Destroy(discardScript.transform.GetChild(0).gameObject);
+                    hasDrawnCard = true;
+                }
+               
+            }
+            else
+            {
+                if (!hasDrawnCard)
+                {
+                    firstPlayer = false;
+                    Cards drawnCard = drawDiscard.discardCards.Pop();
+                    handCards.Add(drawnCard);
 
-            CardView card = Instantiate(cardPrefab, hands[4].transform.position, Quaternion.identity, hands[4].transform);
-            card.transform.localScale = new Vector3(2, 2, 2);        
-            card.SetCardData(drawnCard);
+                    CardView card = Instantiate(cardPrefab, hands[3].transform.position, Quaternion.identity, hands[3].transform);
+                    card.transform.localScale = new Vector3(2, 2, 2);        
+                    card.SetCardData(drawnCard);
+                    hasDrawnCard = true;
+                }
+               
+            }
         }
+       
     }
 
 

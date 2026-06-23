@@ -21,22 +21,31 @@ public class Deck : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        /*
+        foreach (Cards card in cards)
+        {
+            Debug.Log("Card in deck: " + card.num + " of " + card.cardType);
+        }
+        */
     }
 
     public Cards DrawCard()
     {
-        if (cards.Count == 0)
+        if (cards.Count <= 0)
         {
             return null;
         }
-        return cards.Pop();
+        Debug.Log(cards.Peek().num + " of " + cards.Peek().cardType);
+        Debug.Log("Cards in deck: " + cards.Count);
+        Debug.Log("##############");
+        Cards drawnCard = cards.Pop();
+        Debug.Log("Card in deck: " + drawnCard.num + " of " + drawnCard.cardType);
+        return drawnCard;
     }
 
     public void ShuffleDeck()
